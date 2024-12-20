@@ -91,13 +91,10 @@ function SuccessAllMovies(data) {
     if (connectedUser != 0) {
         $(".wishD").show();
         $(".deleteWishD").hide();
-        $(".movieCastBtn").show();
     }
     else {
         $(".deleteWishD").hide();
         $(".wishD").hide();
-        $(".movieCastBtn").hide();
-
     }
 }
 
@@ -190,12 +187,9 @@ function ErrorCBWish(err) {
 function ShowAllMovies() {
     $(".card").show();
     if (connectedUser != 0) {
-        $(".wishD").show();
-        $(".movieCastBtn").show();
-    }
+        $(".wishD").show();    }
     else{
         $(".wishD").hide();
-        $(".movieCastBtn").hide();
     }
     $("#filter").hide();
     $("#castRow").hide();
@@ -357,7 +351,6 @@ function updateAuthButton(userName) {
         castDiv.classList.remove('col-6');
         castDiv.classList.add('col-3');
         $(".wishD").show();
-        $(".movieCastBtn").show();
         $(".deleteWishD").hide();
         $(".AddCaToMo").show();
     } else {
@@ -370,7 +363,6 @@ function updateAuthButton(userName) {
         castDiv.classList.remove('col-3');
         castDiv.classList.add('col-6');
         $(".wishD").hide();
-        $(".movieCastBtn").hide();
         $(".deleteWishD").hide();
         $(".AddCaToMo").hide();
     }
