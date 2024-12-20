@@ -87,7 +87,7 @@ form button {
     margin-bottom: 8px;
 }
 
-.btnATWish {
+.btnATWish, .btnRFWish, .AddCaToMo {
     width: 200px;
     border-radius: 10cap;
     border-color: transparent;
@@ -307,3 +307,4 @@ label {
     margin-top: 10px;
     margin-left: 10px;
 }
+
