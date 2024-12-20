@@ -110,14 +110,25 @@ function SuccessCBGetAllCast(data) {
                             <span><strong>date of birth:</strong> ${data[i].dateOfBirth.toString().split('T')[0]}</span>
                             <span><strong>country:</strong> ${data[i].country}</span>
                         </div>
-                    
+                        <div class="col-12">
+                            <button class="AddCaToMo" onclick="generateMovieOptions(${data[i].id})">Add To Movie</button>
+                        </div>
+                        <div class="col-12">
+                            <select class="moviesDropdown" id="moviesDropdown-${data[i].id}">
+                            </select>
+                        </div>
                         
                     </div>`;
     }
     document.getElementById("CMrow").innerHTML = allCasrStr;
 }
 
-
+function generateMovieOptions(castId){
+    let optionsStr = "";
+    movies.forEach(movie => {
+        optionsStr += `<option value="${movie.id}">${movie.title}</option>`;
+    });
+}
 
 function AddToWishList(id) {
     id2 = `[${connectedUser},${id}]`;
