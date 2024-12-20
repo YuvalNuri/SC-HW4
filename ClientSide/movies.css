@@ -95,6 +95,10 @@ form button {
     margin-bottom: 5px;
 }
 
+.AddCaToMo{
+    width: 100%;  
+}
+
 div.cardPart {
     padding: 0 5px;
 }
@@ -308,6 +312,14 @@ label {
     margin-left: 10px;
 }
 
+.movieCastDiv{
+margin-top: 10px;
+padding-left: 0;
+}
 
-
-
+.movieCastBtn{
+    border-radius: 10cap;
+    border-color: transparent;
+    background-color: rgb(243, 194, 237);
+    margin-bottom: 5px;
+}

@@ -71,6 +71,9 @@ function SuccessAllMovies(data) {
                         <p><i class="fa fa-dollar"></i>${movies[i].income / 1000000}M$</p>
                         <span class="tag-cloud genre">${movies[i].genre}</span>
                         <span class="tag-cloud language">${movies[i].language}</span>
+                    <div class="movieCastDiv">
+                        <button class="movieCastBtn" onclick="">Show Cast</button>
+                    </div>
                     </div>
                     <div class="col-12 desc">
                         ${movies[i].description}
@@ -88,10 +91,13 @@ function SuccessAllMovies(data) {
     if (connectedUser != 0) {
         $(".wishD").show();
         $(".deleteWishD").hide();
+        $(".movieCastBtn").show();
     }
     else {
         $(".deleteWishD").hide();
         $(".wishD").hide();
+        $(".movieCastBtn").hide();
+
     }
 }
 
@@ -141,7 +147,7 @@ function SuccessCBAddWL(data) {
     });
 }
 
-function SuccessCBRemoveWL(data){
+function SuccessCBRemoveWL(data) {
     ShowWishList();
 }
 
@@ -183,10 +189,14 @@ function ErrorCBWish(err) {
 
 function ShowAllMovies() {
     $(".card").show();
-    if (connectedUser != 0)
+    if (connectedUser != 0) {
         $(".wishD").show();
-    else
+        $(".movieCastBtn").show();
+    }
+    else{
         $(".wishD").hide();
+        $(".movieCastBtn").hide();
+    }
     $("#filter").hide();
     $("#castRow").hide();
     $("#movieRow").hide();
@@ -219,7 +229,14 @@ function ShowCastForm() {
     $("#filter").hide();
     $("#castRow").show();
     $("#movieRow").hide();
+    /*
+    if (connectedUser != 0) {
+        $(".AddCaToMo").show();
+    }
+    else
+        $(".AddCaToMo").hide();
 
+*/
 }
 
 function SuccessCBCast(data) {
@@ -329,7 +346,6 @@ function updateAuthButton(userName) {
     const btnCastForm = document.getElementById("btnCastForm");
     const castDiv = btnCastForm.parentElement;
 
-
     if (connectedUser != 0) {
         welcomeMessage.style.display = "inline";  // הצג את אלמנט ה-welcome
         welcomeMessage.textContent = `Welcome ${userName}`;  // הוסף את שם המשתמש
@@ -341,7 +357,9 @@ function updateAuthButton(userName) {
         castDiv.classList.remove('col-6');
         castDiv.classList.add('col-3');
         $(".wishD").show();
+        $(".movieCastBtn").show();
         $(".deleteWishD").hide();
+        $(".AddCaToMo").show();
     } else {
         welcomeMessage.style.display = "none";  // הסתר את אלמנט ה-welcome אם לא מחובר
         authButton.textContent = "Login / Signup"; // שנה את הטקסט להתחברות
@@ -352,7 +370,9 @@ function updateAuthButton(userName) {
         castDiv.classList.remove('col-3');
         castDiv.classList.add('col-6');
         $(".wishD").hide();
+        $(".movieCastBtn").hide();
         $(".deleteWishD").hide();
+        $(".AddCaToMo").hide();
     }
 }
 
@@ -479,6 +499,9 @@ function SuccessCBMovie(data) {
             <p><i class="fa fa-dollar"></i>${data.income / 1000000}M$</p>
             <span class="tag-cloud genre">${data.genre}</span>
             <span class="tag-cloud language">${data.language}</span>
+            <div class="movieCastDiv">
+                <button class="movieCastBtn" onclick="">Show Cast</button>
+            </div>
         </div>
         <div class="col-12 desc">
             ${data.description}
@@ -521,13 +544,11 @@ function closeAddCastModal() {
 
 
 function GenerateOptions() {
-    console.log(1);
-
     let optionsStr = "";
     for (let i = 0; i < movies.length; i++) {
         optionsStr += `<option value="${movies[i].id}">${movies[i].title}</option>`;
     }
     console.log(optionsStr);
-    document.getElementById("castSelect").innerHTML+=optionsStr;
-    
+    document.getElementById("castSelect").innerHTML += optionsStr;
+
 }
