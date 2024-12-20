@@ -10,10 +10,6 @@ function ajaxCall(method, api, data, successCB, errorCB) {
         error: errorCB
     });
 }
-
-function ErrorCallBack(err) {
-    console.log(err);
-}
 /*
 const apiMovies = "https://proj.ruppin.ac.il/bgroup2/test2/tar1/api/Movies";
 const apiRating = "https://proj.ruppin.ac.il/bgroup2/test2/tar1/api/Movies/rating/";
@@ -31,6 +27,7 @@ const apiAddWish = "https://localhost:7208/api/Movies/AddToWishList";
 const apiGetWish = "https://localhost:7208/api/Movies/GetWishList?id=";
 const apiRemoveWish = "https://localhost:7208/api/Movies/RemoveFromWish";
 const apiCast = "https://localhost:7208/api/Casts";
+const apiCastToMovie = "https://localhost:7208/api/Casts/AddCastToMovie";
 const apiUser = "https://localhost:7208/api/Users";
 const apiLogName = "https://localhost:7208/api/Users/LogInName";
 
@@ -132,7 +129,7 @@ function RemoveFromWishList(movieId) {
         user: connectedUser,
         movie: movieId
     }
-    ajaxCall('DELETE',apiRemoveWish,JSON.stringify(id),SuccessCBRemoveWL,ErrorCBRemoveWL);
+    ajaxCall('DELETE',apiRemoveWish,JSON.stringify(id),SuccessCBRemoveWL,ErrorCallBack);
 }
 
 function SuccessCBAddWL(data) {
@@ -148,7 +145,7 @@ function SuccessCBRemoveWL(data){
     ShowWishList();
 }
 
-function ErrorCBRemoveWL(err){
+function ErrorCallBack(err){
     Swal.fire({
         title: 'Error!',
         text: err.responseText,
@@ -360,16 +357,6 @@ function updateAuthButton(userName) {
 }
 
 
-function ErrorCallBackUser(err) {
-    Swal.fire({
-        title: 'Error!',
-        text: 'An error occurred. Please try again later.',
-        icon: 'error'
-    });
-    console.error(err);
-}
-
-
 function CheckLogIn() {
     if (connectedUser != 0) {
         connectedUser = 0;
@@ -438,7 +425,7 @@ $(document).ready(function () {
             $("#userLogIn").val(),
             $("#passwordLogIn").val(),
         ]
-        ajaxCall('POST', apiLogName, JSON.stringify(user), SuccessCBUser, ErrorCallBackUser);
+        ajaxCall('POST', apiLogName, JSON.stringify(user), SuccessCBUser, ErrorCallBack);
     });
 
     $("#signupForm").submit(function (event) {
@@ -454,11 +441,23 @@ $(document).ready(function () {
 
     $("#addCastToMovieForm").submit(function (event) {
         event.preventDefault();
-
-       
+       let id = {
+        castId : document.getElementById('castSelect').getAttribute('data-cast-id'),
+        movieId : parseInt($("#castSelect").val())
+       };
+       ajaxCall('POST',apiCastToMovie,JSON.stringify(id),SuccessCBCastToMovie,ErrorCallBack);
     });
 
 });
+
+function SuccessCBCastToMovie(data){
+    Swal.fire({
+        title: "Cast Added To Movie!",
+        text: "The cast was successfully added to the movie!",
+        icon: "success",
+        confirmButtonText: "OK"
+    });
+}
 
 function SuccessCBMovie(data) {
     Swal.fire({
@@ -510,7 +509,7 @@ function ErrorCallBackMovie(err) {
 
 // Open the Add Cast Modal
 function openAddCastModal(castId) {
-    castIdToMovie = castId;
+    document.getElementById('castSelect').setAttribute('data-cast-id', castId);
     GenerateOptions();
     document.getElementById('addCastModal').style.display = 'flex';
 }
