@@ -81,7 +81,7 @@ function SuccessAllMovies(data) {
                         <button class="btnATWish" onclick="AddToWishList(${movies[i].id})">Add to Wish List</button>
                     </div>
                     <div class="col-12 deleteWishD">
-                        <button class="btnATWish" onclick="">Remove from Wish List</button>
+                        <button class="btnRFWish" onclick="RemoveFromWidhList(${movies[i].id})">Remove from Wish List</button>
                     </div>
                 </div>
             </div>`;
@@ -110,15 +110,23 @@ function SuccessCBGetAllCast(data) {
                             <span><strong>date of birth:</strong> ${data[i].dateOfBirth.toString().split('T')[0]}</span>
                             <span><strong>country:</strong> ${data[i].country}</span>
                         </div>
+                    
+                        
                     </div>`;
     }
     document.getElementById("CMrow").innerHTML = allCasrStr;
 }
 
+
+
 function AddToWishList(id) {
     id2 = `[${connectedUser},${id}]`;
     console.log(id2);
     ajaxCall('POST', apiAddWish, id2, SuccessCBAddWL, ErrorCallBack);
+}
+
+function RemoveFromWidhList(id) {
+    AddToWishList(id);
 }
 
 function SuccessCBAddWL(data) {
@@ -217,7 +225,9 @@ function SuccessCBCast(data) {
                             <span><strong>role:</strong> ${data.role}</span>
                             <span><strong>date of birth:</strong> ${data.dateOfBirth.toString().split('T')[0]}</span>
                             <span><strong>country:</strong> ${data.country}</span>
+                            
                         </div>
+                        
                     </div>`;
 }
 
@@ -453,7 +463,7 @@ function SuccessCBMovie(data) {
             <button class="btnATWish" onclick="AddToWishList(${data.id})">Add to Wish List</button>
         </div>
          <div class="col-12 deleteWishD">
-             <button class="btnATWish" onclick="">Remove from Wish List</button>
+             <button class="btnRFWish" onclick="RemoveFromWidhList(${movies[i].id})">Remove from Wish List</button>
         </div>
     </div>
 </div>`;
