@@ -116,9 +116,11 @@ function SuccessCBGetAllCast(data) {
 }
 
 function AddToWishList(id) {
-    id2 = `[${connectedUser},${id}]`;
+    id2 = {
+    user: connectedUser,
+    movie: id};
     console.log(id2);
-    ajaxCall('POST', apiAddWish, id2, SuccessCBAddWL, ErrorCallBack);
+    ajaxCall('POST', apiAddWish, JSON.stringify(id2), SuccessCBAddWL, ErrorCallBack);
 }
 
 function SuccessCBAddWL(data) {
@@ -405,10 +407,10 @@ $(document).ready(function () {
 
     $("#loginForm").submit(function (event) {
         event.preventDefault();
-        let user = [
-            $("#userLogIn").val(),
-            $("#passwordLogIn").val(),
-        ]
+        let user = {
+            name : $("#userLogIn").val(),
+            password : $("#passwordLogIn").val(),
+        }
         ajaxCall('POST', apiLogName, JSON.stringify(user), SuccessCBUser, ErrorCallBackUser);
     });
 
