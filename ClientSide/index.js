@@ -112,7 +112,7 @@ function SuccessCBGetAllCast(data) {
                             <span><strong>country:</strong> ${data[i].country}</span>
                         </div>
                          <div class="col-12">
-                        <button class="AddCaToMo" onclick="openAddCastModal()">Add Cast To Movie</button>
+                        <button class="AddCaToMo" onclick="openAddCastModal('${data[i].id}')">Add Cast To Movie</button>
                     </div>
                     </div>`;
     }
@@ -242,10 +242,11 @@ function SuccessCBCast(data) {
                             <span><strong>name:</strong> ${data.name}</span>
                             <span><strong>role:</strong> ${data.role}</span>
                             <span><strong>date of birth:</strong> ${data.dateOfBirth.toString().split('T')[0]}</span>
-                            <span><strong>country:</strong> ${data.country}</span>
-                            
-                        </div>
-                        
+                            <span><strong>country:</strong> ${data.country}</span>      
+                        </div> 
+                         <div class="col-12">
+                        <button class="AddCaToMo" onclick="openAddCastModal('${data.id}')">Add Cast To Movie</button>
+                    </div>     
                     </div>`;
 }
 
@@ -451,6 +452,12 @@ $(document).ready(function () {
         ajaxCall('POST', apiUser, JSON.stringify(user), SuccessCBReg, ErrorCallBackUser);
     });
 
+    $("#addCastToMovieForm").submit(function (event) {
+        event.preventDefault();
+
+       
+    });
+
 });
 
 function SuccessCBMovie(data) {
@@ -502,7 +509,8 @@ function ErrorCallBackMovie(err) {
 }
 
 // Open the Add Cast Modal
-function openAddCastModal() {
+function openAddCastModal(castId) {
+    castIdToMovie = castId;
     GenerateOptions();
     document.getElementById('addCastModal').style.display = 'flex';
 }
@@ -512,26 +520,6 @@ function closeAddCastModal() {
     document.getElementById('addCastModal').style.display = 'none';
 }
 
-// Handle the form submission (e.g., save the selected cast member and role)
-document.getElementById('addCastForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    // Get selected movie 
-    const movieSelect = document.getElementById('castSelect').value;
-
-    if (castMember && role) {
-        // You can handle the addition of the cast member to the movie here
-        console.log('Adding Cast:', castMember, 'Role:', role);
-
-        // Close modal after submission
-        closeAddCastModal();
-
-        // Optionally, you can show a success message or update the UI
-        alert('Cast added successfully!');
-    } else {
-        alert('Please select a cast member and a role.');
-    }
-});
 
 function GenerateOptions() {
     console.log(1);
