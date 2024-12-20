@@ -29,6 +29,7 @@ const apiRating = "https://localhost:7208/api/Movies/rating/";
 const apiDuration = "https://localhost:7208/api/Movies/GetByDuration?duration=";
 const apiAddWish = "https://localhost:7208/api/Movies/AddToWishList";
 const apiGetWish = "https://localhost:7208/api/Movies/GetWishList?id=";
+const apiRemoveWish = "https://localhost:7208/api/Movies/RemoveFromWish";
 const apiCast = "https://localhost:7208/api/Casts";
 const apiUser = "https://localhost:7208/api/Users";
 const apiLogName = "https://localhost:7208/api/Users/LogInName";
@@ -81,7 +82,7 @@ function SuccessAllMovies(data) {
                         <button class="btnATWish" onclick="AddToWishList(${movies[i].id})">Add to Wish List</button>
                     </div>
                     <div class="col-12 deleteWishD">
-                        <button class="btnRFWish" onclick="RemoveFromWidhList(${movies[i].id})">Remove from Wish List</button>
+                        <button class="btnRFWish" onclick="RemoveFromWishList(${movies[i].id})">Remove from Wish List</button>
                     </div>
                 </div>
             </div>`;
@@ -120,15 +121,17 @@ function SuccessCBGetAllCast(data) {
 
 
 function AddToWishList(id) {
-    id2 = {
-    user: connectedUser,
-    movie: id};
+    id2 = [connectedUser, id]
     console.log(id2);
-    ajaxCall('POST', apiAddWish, JSON.stringify(id2), SuccessCBAddWL, ErrorCallBack);
+    ajaxCall('POST', apiAddWish, id2, SuccessCBAddWL, ErrorCallBack);
 }
 
-function RemoveFromWidhList(id) {
-    AddToWishList(id);
+function RemoveFromWishList(movieId) {
+    id = {
+        user: connectedUser,
+        movie: movieId
+    }
+    ajaxCall('DELETE',apiRemoveWish,JSON.stringify(id),SuccessCBRemoveWL,ErrorCBRemoveWL);
 }
 
 function SuccessCBAddWL(data) {
@@ -137,6 +140,18 @@ function SuccessCBAddWL(data) {
         icon: 'success',
         timer: 1000, // המחווה תיסגר אוטומטית לאחר 2 שניות
         showConfirmButton: false // הסתרת כפתור "אישור"
+    });
+}
+
+function SuccessCBRemoveWL(data){
+    ShowWishList();
+}
+
+function ErrorCBRemoveWL(err){
+    Swal.fire({
+        title: 'Error!',
+        text: err.responseText,
+        icon: 'error'
     });
 }
 
@@ -417,10 +432,10 @@ $(document).ready(function () {
 
     $("#loginForm").submit(function (event) {
         event.preventDefault();
-        let user = {
-            name : $("#userLogIn").val(),
-            password : $("#passwordLogIn").val(),
-        }
+        let user = [
+            $("#userLogIn").val(),
+            $("#passwordLogIn").val(),
+        ]
         ajaxCall('POST', apiLogName, JSON.stringify(user), SuccessCBUser, ErrorCallBackUser);
     });
 
@@ -465,7 +480,7 @@ function SuccessCBMovie(data) {
             <button class="btnATWish" onclick="AddToWishList(${data.id})">Add to Wish List</button>
         </div>
          <div class="col-12 deleteWishD">
-             <button class="btnRFWish" onclick="RemoveFromWidhList(${movies[i].id})">Remove from Wish List</button>
+             <button class="btnRFWish" onclick="RemoveFromWishList(${movies[i].id})">Remove from Wish List</button>
         </div>
     </div>
 </div>`;
