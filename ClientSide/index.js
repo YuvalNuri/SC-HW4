@@ -14,7 +14,7 @@ function ajaxCall(method, api, data, successCB, errorCB) {
 function ErrorCallBack(err) {
     console.log(err);
 }
-
+/*
 const apiMovies = "https://proj.ruppin.ac.il/bgroup2/test2/tar1/api/Movies";
 const apiRating = "https://proj.ruppin.ac.il/bgroup2/test2/tar1/api/Movies/rating/";
 const apiDuration = "https://proj.ruppin.ac.il/bgroup2/test2/tar1/api/Movies/GetByDuration?duration=";
@@ -23,6 +23,15 @@ const apiGetWish = "https://proj.ruppin.ac.il/bgroup2/test2/tar1/api/Movies/GetW
 const apiCast = "https://proj.ruppin.ac.il/bgroup2/test2/tar1/api/Casts";
 const apiUser = "https://proj.ruppin.ac.il/bgroup2/test2/tar1/api/Users";
 const apiLogName = "https://proj.ruppin.ac.il/bgroup2/test2/tar1/api/Users/LogInName";
+*/
+const apiMovies = "https://localhost:7208/api/Movies";
+const apiRating = "https://localhost:7208/api/Movies/rating/";
+const apiDuration = "https://localhost:7208/api/Movies/GetByDuration?duration=";
+const apiAddWish = "https://localhost:7208/api/Movies/AddToWishList";
+const apiGetWish = "https://localhost:7208/api/Movies/GetWishList?id=";
+const apiCast = "https://localhost:7208/api/Casts";
+const apiUser = "https://localhost:7208/api/Users";
+const apiLogName = "https://localhost:7208/api/Users/LogInName";
 
 function init() {
     ajaxCall('Get', apiMovies, null, SuccessAllMovies, ErrorCallBack);
@@ -31,6 +40,7 @@ function init() {
     $("#filter").hide();
     $("#castRow").hide();
     $("#movieRow").hide();
+
 
     if (localStorage["connectedUser"] != undefined) {
         connectedUser = localStorage["connectedUser"];
@@ -67,17 +77,24 @@ function SuccessAllMovies(data) {
                     <div class="col-12 desc">
                         ${movies[i].description}
                     </div>
-                    <div class="col-12 wishD hidden">
+                    <div class="col-12 wishD">
                         <button class="btnATWish" onclick="AddToWishList(${movies[i].id})">Add to Wish List</button>
+                    </div>
+                    <div class="col-12 deleteWishD">
+                        <button class="btnATWish" onclick="">Remove from Wish List</button>
                     </div>
                 </div>
             </div>`;
     }
     document.getElementById("AllMovies").innerHTML = strMovies;
-    if (connectedUser != 0)
+    if (connectedUser != 0) {
         $(".wishD").show();
-    else
+        $(".deleteWishD").hide();
+    }
+    else {
+        $(".deleteWishD").hide();
         $(".wishD").hide();
+    }
 }
 
 function SuccessCBGetAllCast(data) {
@@ -119,6 +136,7 @@ function ShowWishList() {
     $("#castRow").hide();
     $("#filter").show();
     $("#movieRow").hide();
+    $(".deleteWishD").show();
     $("#filterRating").val('');
     $("#filterDuration").val('');
     ajaxCall('GET', apiGetWish + connectedUser, null, SuccessCBWish, ErrorCBWish);
@@ -149,6 +167,8 @@ function ShowAllMovies() {
     $("#filter").hide();
     $("#castRow").hide();
     $("#movieRow").hide();
+    $(".deleteWishD").hide();
+
 }
 
 function FilterByDur() {
@@ -216,10 +236,10 @@ function openModal() {
 
 // Close Modal
 function closeModal() {
-    $("#loginForm")[0].reset(); 
-    $("#signupForm")[0].reset(); 
-    $('#rememberBoxLog').prop('checked', false); 
-    $('#rememberBoxReg').prop('checked', false); 
+    $("#loginForm")[0].reset();
+    $("#signupForm")[0].reset();
+    $('#rememberBoxLog').prop('checked', false);
+    $('#rememberBoxReg').prop('checked', false);
     document.getElementById("authModal").style.display = "none";
 }
 
@@ -295,6 +315,7 @@ function updateAuthButton(userName) {
         castDiv.classList.remove('col-6');
         castDiv.classList.add('col-3');
         $(".wishD").show();
+        $(".deleteWishD").hide();
     } else {
         welcomeMessage.style.display = "none";  // הסתר את אלמנט ה-welcome אם לא מחובר
         authButton.textContent = "Login / Signup"; // שנה את הטקסט להתחברות
@@ -305,6 +326,7 @@ function updateAuthButton(userName) {
         castDiv.classList.remove('col-3');
         castDiv.classList.add('col-6');
         $(".wishD").hide();
+        $(".deleteWishD").hide();
     }
 }
 
@@ -332,7 +354,7 @@ function CheckLogIn() {
             timer: 2000, // המחווה תיסגר אוטומטית לאחר 2 שניות
             showConfirmButton: false // הסתרת כפתור "אישור"
         });
-        remember=false;
+        remember = false;
     }
     else {
         openModal();
@@ -427,8 +449,11 @@ function SuccessCBMovie(data) {
         <div class="col-12 desc">
             ${data.description}
         </div>
-        <div class="col-12 wishD hidden">
+        <div class="col-12 wishD">
             <button class="btnATWish" onclick="AddToWishList(${data.id})">Add to Wish List</button>
+        </div>
+         <div class="col-12 deleteWishD">
+             <button class="btnATWish" onclick="">Remove from Wish List</button>
         </div>
     </div>
 </div>`;

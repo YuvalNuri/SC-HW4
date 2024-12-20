@@ -79,7 +79,7 @@ form button {
     border-radius: 5px;
 }
 
-.wishD {
+.wishD, .deleteWishD {
     text-align: center;
 }
 
@@ -88,7 +88,7 @@ form button {
 }
 
 .btnATWish {
-    width: 150px;
+    width: 200px;
     border-radius: 10cap;
     border-color: transparent;
     background-color: rgb(182, 212, 212);
