@@ -179,7 +179,7 @@ label {
     margin-bottom: 10px;
 }
 
-.rememberBox, #movieForm textarea, #movieForm select{
+.rememberBox, #movieForm textarea, #movieForm select, #castSelect{
     background-color: transparent;
     border: rgb(182, 212, 212) solid 2px;
     border-radius: 5px;
@@ -307,4 +307,7 @@ label {
     margin-top: 10px;
     margin-left: 10px;
 }
+
+
+
 

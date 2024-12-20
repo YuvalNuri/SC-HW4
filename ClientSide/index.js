@@ -111,8 +111,9 @@ function SuccessCBGetAllCast(data) {
                             <span><strong>date of birth:</strong> ${data[i].dateOfBirth.toString().split('T')[0]}</span>
                             <span><strong>country:</strong> ${data[i].country}</span>
                         </div>
-                    
-                        
+                         <div class="col-12">
+                        <button class="AddCaToMo" onclick="openAddCastModal()">Add Cast To Movie</button>
+                    </div>
                     </div>`;
     }
     document.getElementById("CMrow").innerHTML = allCasrStr;
@@ -485,6 +486,7 @@ function SuccessCBMovie(data) {
     </div>
 </div>`;
     $(`#m${data.id}`).hide();
+    movies.push(data);
     // אופציונלי: אפס את הטופס לאחר הצלחה
     document.getElementById("movieForm").reset();
 }
@@ -497,4 +499,48 @@ function ErrorCallBackMovie(err) {
         confirmButtonText: "OK"
     });
     console.error("Error adding movie:", err);
+}
+
+// Open the Add Cast Modal
+function openAddCastModal() {
+    GenerateOptions();
+    document.getElementById('addCastModal').style.display = 'flex';
+}
+
+// Close the Add Cast Modal
+function closeAddCastModal() {
+    document.getElementById('addCastModal').style.display = 'none';
+}
+
+// Handle the form submission (e.g., save the selected cast member and role)
+document.getElementById('addCastForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Get selected movie 
+    const movieSelect = document.getElementById('castSelect').value;
+
+    if (castMember && role) {
+        // You can handle the addition of the cast member to the movie here
+        console.log('Adding Cast:', castMember, 'Role:', role);
+
+        // Close modal after submission
+        closeAddCastModal();
+
+        // Optionally, you can show a success message or update the UI
+        alert('Cast added successfully!');
+    } else {
+        alert('Please select a cast member and a role.');
+    }
+});
+
+function GenerateOptions() {
+    console.log(1);
+
+    let optionsStr = "";
+    for (let i = 0; i < movies.length; i++) {
+        optionsStr += `<option value="${movies[i].id}">${movies[i].title}</option>`;
+    }
+    console.log(optionsStr);
+    document.getElementById("castSelect").innerHTML+=optionsStr;
+    
 }

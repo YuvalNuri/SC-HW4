@@ -205,6 +205,26 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal" id="addCastModal">
+            <div class="modal-content">
+                <span class="modal-close" onclick="closeAddCastModal()">&times;</span>
+                <div class="modal-header" id="modal-head">
+                    <h2>Add Cast to Movie</h2>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <form id="addCastForm">
+                        <div class="form-group">
+                            <label for="castSelect">Select Movie</label>
+                            <select id="castSelect" required>
+                                <option value="" disabled selected>Select Movie</option>
+                            </select>
+                        </div>
+                        <button type="submit">Add Cast</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 
