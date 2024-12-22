@@ -41,7 +41,7 @@ function init() {
 
 
     if (localStorage["connectedUser"] != undefined) {
-        connectedUser = localStorage["connectedUser"];
+        connectedUser = parseInt(localStorage["connectedUser"]);
         updateAuthButton(localStorage["userName"]);
         remember = true;
         console.log(remember);
@@ -127,7 +127,7 @@ function SuccessCBGetAllCast(data) {
 function AddToWishList(id) {
     id2 = [connectedUser, id]
     console.log(id2);
-    ajaxCall('POST', apiAddWish, id2, SuccessCBAddWL, ErrorCallBack);
+    ajaxCall('POST', apiAddWish, JSON.stringify(id2), SuccessCBAddWL, ErrorCallBack);
 }
 
 function RemoveFromWishList(movieId) {
@@ -306,7 +306,7 @@ function SuccessCBReg(data) {
         text: 'You have successfully registered. Welcome aboard! 🎉',
         icon: 'success'
     });
-    connectedUser = data["id"];
+    connectedUser = parseInt(data["id"]);
     remember = document.getElementById('rememberBoxReg').checked;
     closeModal();
     updateAuthButton(data["userName"]);  // עדכן את כפתור ההתנתקות עם שם המשתמש
@@ -326,7 +326,7 @@ function SuccessCBUser(data) {
         icon: 'success',
         confirmButtonText: 'Continue'
     });
-    connectedUser = data["id"];
+    connectedUser = parseInt(data["id"]);
     remember = document.getElementById('rememberBoxLog').checked;
     closeModal();
     updateAuthButton(data["userName"]);  // עדכן את כפתור ההתנתקות עם שם המשתמש
