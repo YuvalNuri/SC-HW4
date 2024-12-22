@@ -72,7 +72,7 @@ function SuccessAllMovies(data) {
                         <span class="tag-cloud genre">${movies[i].genre}</span>
                         <span class="tag-cloud language">${movies[i].language}</span>
                     <div class="movieCastDiv">
-                        <button class="movieCastBtn" onclick="">Show Cast</button>
+                        <button class="movieCastBtn" onclick="showCast(123)">Show Cast</button>
                     </div>
                     </div>
                     <div class="col-12 desc">
@@ -492,7 +492,7 @@ function SuccessCBMovie(data) {
             <span class="tag-cloud genre">${data.genre}</span>
             <span class="tag-cloud language">${data.language}</span>
             <div class="movieCastDiv">
-                <button class="movieCastBtn" onclick="">Show Cast</button>
+                <button class="movieCastBtn" onclick="showCast(123)">Show Cast</button>
             </div>
         </div>
         <div class="col-12 desc">
@@ -543,4 +543,39 @@ function GenerateOptions() {
     console.log(optionsStr);
     document.getElementById("castSelect").innerHTML += optionsStr;
 
+}
+
+function showCast(movieId) {
+    // כאן אתה יכול לשלוף את המידע על צוות השחקנים, לדוגמה
+    // אם יש לך מערך או אובייקט של הסרטים עם השחקנים
+    const movie = getMovieById(movieId); // זוהי פונקציה לדוגמה (תצטרך לכתוב את זה)
+    
+    const castListDiv = document.getElementById("castList");
+    castListDiv.innerHTML = ''; // מנקה את המידע הקודם
+
+    // יצירת רשימה של השחקנים
+    movie.cast.forEach(actor => {
+        const actorDiv = document.createElement('div');
+        actorDiv.textContent = actor.name; // הנחת השם של השחקן
+        castListDiv.appendChild(actorDiv);
+    });
+
+    // הצגת המודל
+    const modal = document.getElementById("castModal");
+    modal.style.display = "block";
+}
+
+function closeModal() {
+    const modal = document.getElementById("castModal");
+    modal.style.display = "none";
+}
+
+function getMovieById(movieId) {
+    // זוהי רק דוגמה לנתונים. תוכל לשלוף את המידע ממסד נתונים או מערך
+    const movies = [
+        { id: 123, name: "Inception", cast: [{ name: "Leonardo DiCaprio" }, { name: "Joseph Gordon-Levitt" }] },
+        { id: 456, name: "The Dark Knight", cast: [{ name: "Christian Bale" }, { name: "Heath Ledger" }] }
+    ];
+
+    return movies.find(movie => movie.id === movieId);
 }

@@ -158,7 +158,7 @@
         <div class="modal" id="authModal">
             <div class="modal-content">
                 <span class="modal-close" onclick="closeModal()">&times;</span>
-                <div class="modal-header" id="modal-head">
+                <div class="modal-header modal-head">
                     <h2 id="modalTitle">Login</h2>
                 </div>
                 <div class="modal-body" id="modalBody">
@@ -207,7 +207,7 @@
         <div class="modal" id="addCastModal">
             <div class="modal-content">
                 <span class="modal-close" onclick="closeAddCastModal()">&times;</span>
-                <div class="modal-header" id="modal-head">
+                <div class="modal-header modal-head">
                     <h2>Add Cast to Movie</h2>
                 </div>
                 <div class="modal-body" id="modalBody">
@@ -223,6 +223,19 @@
                 </div>
             </div>
         </div>
+
+
+        <div id="castModal" class="modal">
+            <div class="modal-content">
+                <span class="modal-close" onclick="closeModal()">&times;</span>
+                <div class="modal-header modal-head">
+                    <h2>Movie Cast</h2>
+                                </div>
+                
+                <div id="castList"></div>
+            </div>
+        </div>
+
     </div>
 </body>
 </html>
