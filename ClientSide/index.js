@@ -72,7 +72,7 @@ function SuccessAllMovies(data) {
                         <span class="tag-cloud genre">${movies[i].genre}</span>
                         <span class="tag-cloud language">${movies[i].language}</span>
                     <div class="movieCastDiv">
-                        <button class="movieCastBtn" onclick="">Show Cast</button>
+                        <button class="movieCastBtn" onclick="showCast('${movies[i].id}')">Show Cast</button>
                     </div>
                     </div>
                     <div class="col-12 desc">
@@ -492,7 +492,7 @@ function SuccessCBMovie(data) {
             <span class="tag-cloud genre">${data.genre}</span>
             <span class="tag-cloud language">${data.language}</span>
             <div class="movieCastDiv">
-                <button class="movieCastBtn" onclick="">Show Cast</button>
+                <button class="movieCastBtn" onclick="showCast('${data.id}">Show Cast</button>
             </div>
         </div>
         <div class="col-12 desc">
@@ -543,4 +543,15 @@ function GenerateOptions() {
     console.log(optionsStr);
     document.getElementById("castSelect").innerHTML += optionsStr;
 
+}
+
+function showCast(movieId){
+    const modal = document.getElementById("showMovieCast");
+    modal.style.display = "block";
+    console.log(movieId);
+}
+
+function closeMovieCastModal() {
+    const modal = document.getElementById("showMovieCast");
+    modal.style.display = "none";
 }
