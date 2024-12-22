@@ -28,6 +28,7 @@ const apiGetWish = "https://localhost:7208/api/Movies/GetWishList?id=";
 const apiRemoveWish = "https://localhost:7208/api/Movies/RemoveFromWish";
 const apiCast = "https://localhost:7208/api/Casts";
 const apiCastToMovie = "https://localhost:7208/api/Casts/AddCastToMovie";
+const apiCastOfMovie = "https://localhost:7208/api/Casts/GetCastOfMovie?id=";
 const apiUser = "https://localhost:7208/api/Users";
 const apiLogName = "https://localhost:7208/api/Users/LogInName";
 
@@ -549,6 +550,23 @@ function showCast(movieId){
     const modal = document.getElementById("showMovieCast");
     modal.style.display = "flex";
     console.log(movieId);
+    ajaxCall('GET',apiCastOfMovie+movieId,null,SuccessCBCastOfMovie,ErrorCallBack)
+}
+
+function SuccessCBCastOfMovie(data){
+    let castStr="";
+    for(let i=0; i<data.length;i++){
+        castStr+= `<div class="player-card castMcard">
+                        <div>
+                            <img src="${data[i].photoUrl}">
+                        </div>  
+                        <div class="player-info">
+                            <span><strong>name:</strong> ${data[i].castName}</span>
+                            <span><strong>role:</strong> ${data[i].role}</span>
+                        </div>
+                    </div>`;
+    }
+    document.getElementById("modalBody3").innerHTML=castStr;
 }
 
 function closeMovieCastModal() {
