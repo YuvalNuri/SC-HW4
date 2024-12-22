@@ -547,7 +547,7 @@ function GenerateOptions() {
 
 function showCast(movieId){
     const modal = document.getElementById("showMovieCast");
-    modal.style.display = "block";
+    modal.style.display = "flex";
     console.log(movieId);
 }
 
