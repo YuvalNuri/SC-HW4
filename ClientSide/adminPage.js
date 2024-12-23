@@ -1,6 +1,4 @@
-2.59//const userAPI = "https://proj.ruppin.ac.il/bgroup3/test2/tar1/api/Users/";
-// const userAPI = "https://proj.ruppin.ac.il/bgroup3/test2/tar1/api/Users/";
-// const wishlistApiforCertainUser = "https://proj.ruppin.ac.il/bgroup3/test2/tar1/api/Movies" + "/Wishlist"+ "/userId/" 
+
 function ajaxCall(method, api, data, successCB, errorCB) {
   $.ajax({
     type: method,
@@ -83,7 +81,12 @@ function SuccessWishList(data){
         </div>
       `);
     }
-    $("#wishlistModal").modal("show");
+    const modal = document.getElementById("showWish");
+    modal.style.display = "flex";
+  } 
+
+
+function closeWishModal() {
+  const modal = document.getElementById("showWish");
+  modal.style.display = "none";
 }
-  
-   
