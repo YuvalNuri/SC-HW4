@@ -41,7 +41,7 @@ function init() {
     $("#filter").hide();
     $("#castRow").hide();
     $("#movieRow").hide();
-
+    $("#adminBtn").hide();
 
     if (localStorage["connectedUser"] != undefined) {
         connectedUser = parseInt(localStorage["connectedUser"]);
@@ -331,6 +331,9 @@ function SuccessCBUser(data) {
         localStorage["connectedUser"] = connectedUser;
         localStorage["userName"] = data["userName"];
     }
+    if(connectedUser==admin){
+        $("#adminBtn").show();
+    }
 }
 
 function updateAuthButton(userName) {
@@ -378,6 +381,8 @@ function CheckLogIn() {
         localStorage.clear();
         ShowAllMovies();
         updateAuthButton();
+        $("#adminBtn").hide();
+
         Swal.fire({
             title: 'Logged out successfully!',
             text: 'See you next time!',
