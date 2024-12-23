@@ -31,10 +31,12 @@
 <body onload="init()">
     <div id="logBtn-div">
         <button id="logInBtn" onclick="CheckLogIn()">Login / Signup</button>
+        <a href="adminPage.html" ><button id="adminBtn" >Admin Page</button></a>
         <span id="welcomeMessage" style="display: none;"></span>
     </div>
 
     <div class="container">
+        
         <h1>Movie Collection</h1>
         <div class="row menu">
             <div class="col-6"><button id="btnAllMovies" onclick="ShowAllMovies()">All Movies</button></div>
@@ -42,6 +44,25 @@
             <div class="col-3"><button id="btnWishList" style="display:none;" onclick="ShowWishList()">Wishlist</button>
             </div>
             <div class="col-3"><button id="addMovieBtn" style="display:none;" onclick="addMovie()">Add Movie</button>
+            </div>
+        </div>
+
+        <div class="row" id="adminPage">
+            <table id="userTable" class="display">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>User Name</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   
+                </tbody>
+            </table>
+            <div class="col-12" id="userWish">
+                
             </div>
         </div>
 
@@ -246,29 +267,7 @@
             </div>
         </div>
 
-        <div class="row" id="adminPage">
-            <table id="userTable" class="display">
-                <thead>
-                    <tr>
-                        <th>Column 1</th>
-                        <th>Column 2</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Row 1 Data 1</td>
-                        <td>Row 1 Data 2</td>
-                    </tr>
-                    <tr>
-                        <td>Row 2 Data 1</td>
-                        <td>Row 2 Data 2</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="col-12" id="userWish">
-                
-            </div>
-        </div>
+       
     </div>
 </body>
 
