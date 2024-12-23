@@ -28,10 +28,10 @@ $(document).ready(function () {
     pageLength: 5,
   });
 
-  UploadUsers();
+  ShowUsers();
 });
 
-UploadUsers = () => {
+function ShowUsers() {
     // Destroy existing datatable if it exists - common issuue with datatable
     if ($.fn.DataTable.isDataTable("#usersTable")) {
       $("#usersTable").DataTable().destroy();
@@ -48,9 +48,9 @@ UploadUsers = () => {
       dataTable.append(
         `<tr>
         <td>${data[i].userName}</td>
-        <td>${data[i].email || "Unknown"}</td>
-        <td><button class="detail-btn detail-btn-info " 
-        onclick="showWishList(${data[i].id})">View</button></td>
+        <td>${data[i].email}</td>
+        <td><button class="userBtn" 
+        onclick="ShowWishList(${data[i].id})">View</button></td>
       </tr>`
       );      
     }
@@ -64,16 +64,15 @@ UploadUsers = () => {
     });
   }
 
-function showWishList(id){
+function ShowWishList(id){
   console.log(id);
   ajaxCall("GET", apiGetWish+id,null,SuccessWishList, ErrorCB);
 }
 
 function SuccessWishList(data){
   console.log(data)
-  $("#wishlistItems").empty();
+  $("#modalBody").empty();
 
-  if (data.length > 0) {
     for (let i = 0; i < data.length; i++) {
       $("#wishlistItems").append(`
         <div class="wishlist-item">
@@ -85,16 +84,6 @@ function SuccessWishList(data){
       `);
     }
     $("#wishlistModal").modal("show");
-  } 
-  else {
-    Swal.fire({
-      title: 'Error!',
-      text: err.responseText,
-      icon: 'error',
-      timer: 2000
-  });
-  }
-  
 }
   
    

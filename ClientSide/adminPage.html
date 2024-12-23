@@ -19,8 +19,8 @@
 
 <body>
     <div id="header">
-        <a href=""><button id="homeBtn">Home Page</button></a>
         <h1>Users Manager</h1>
+        <a href=""><button id="homeBtn">Home Page</button></a>
     </div>
 
     <div class="table-container">
@@ -39,18 +39,14 @@
         </table>
     </div>
 
-    <!-- Wishlist Modal -->
-    <div class="modal fade" id="wishlistModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Wishlist for <span id="modalUsername"></span></h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div id="wishlistItems"> </div>
-                </div>
+    <div class="modal" id="showWish">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeWishModal()">&times;</span>
+            <div class="modal-header" id="modal-head">
+                <h2>User's Wish List</h2>
+            </div>
+            <div class="modal-body" id="modalBody">
+                
             </div>
         </div>
     </div>

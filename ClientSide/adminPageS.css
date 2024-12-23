@@ -39,3 +39,7 @@ body{
     display: flex;
     flex-direction: column;
 }
+
+#showWish{
+    overflow: auto;
+}
