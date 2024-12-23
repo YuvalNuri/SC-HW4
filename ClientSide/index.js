@@ -449,7 +449,7 @@ $(document).ready(function () {
             Email: $("#emailReg").val(),
             Password: $("#passwordReg").val()
         };
-        ajaxCall('POST', apiUser, JSON.stringify(user), SuccessCBReg, ErrorCallBackUser);
+        ajaxCall('POST', apiUser, JSON.stringify(user), SuccessCBReg, ErrorCallBack);
     });
 
     $("#addCastToMovieForm").submit(function (event) {
