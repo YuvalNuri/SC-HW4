@@ -331,9 +331,6 @@ function SuccessCBUser(data) {
         localStorage["connectedUser"] = connectedUser;
         localStorage["userName"] = data["userName"];
     }
-    if(connectedUser==admin){
-        $("#adminBtn").show();
-    }
 }
 
 function updateAuthButton(userName) {
@@ -359,6 +356,9 @@ function updateAuthButton(userName) {
         $(".wishD").show();
         $(".deleteWishD").hide();
         $(".AddCaToMo").show();
+        if(connectedUser==admin){
+            $("#adminBtn").show();
+        }
     } else {
         welcomeMessage.style.display = "none";  // הסתר את אלמנט ה-welcome אם לא מחובר
         authButton.textContent = "Login / Signup"; // שנה את הטקסט להתחברות
@@ -371,6 +371,7 @@ function updateAuthButton(userName) {
         $(".wishD").hide();
         $(".deleteWishD").hide();
         $(".AddCaToMo").hide();
+        $("#adminBtn").hide();
     }
 }
 
@@ -381,8 +382,6 @@ function CheckLogIn() {
         localStorage.clear();
         ShowAllMovies();
         updateAuthButton();
-        $("#adminBtn").hide();
-
         Swal.fire({
             title: 'Logged out successfully!',
             text: 'See you next time!',

@@ -12,6 +12,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/dataTables.bootstrap5.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="adminPage.js"></script>
     <link rel="stylesheet" href="adminPageS.css">
 
@@ -20,7 +22,7 @@
 <body>
     <div id="header">
         <h1>Users Manager</h1>
-        <a href=""><button id="homeBtn">Home Page</button></a>
+        <a href="index.html"><button id="homeBtn">Home Page</button></a>
     </div>
 
     <div class="table-container">
@@ -50,22 +52,14 @@
             </div>
         </div>
     </div>
-  <div class="modal" id="showMovieCast">
+  <div class="modal" id="showWish">
             <div class="modal-content">
-                <span class="modal-close" onclick="closeMovieCastModal()">&times;</span>
-                <div class="modal-header" id="modal-head2">
-                    <h2>Movie Cast</h2>
+                <span class="modal-close" onclick="closeWishModal()">&times;</span>
+                <div class="modal-header" id="modal-head">
+                    <h2>User's Wish List</h2>
                 </div>
-                <div class="modal-body" id="modalBody3">
-                    <div class="player-card">
-                        <div>
-                            <img src="${data.photoUrl}">
-                        </div>
-                        <div class="player-info">
-                            <span><strong>name:</strong> ${data.name}</span>
-                            <span><strong>role:</strong> ${data.role}</span>
-                        </div>
-                    </div>
+                <div class="modal-body" id="modalBody">
+                    
                 </div>
             </div>
         </div>

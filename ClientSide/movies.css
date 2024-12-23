@@ -303,7 +303,7 @@ label {
     margin-bottom: 3px;
 }
 
-#logInBtn {
+#logInBtn, #adminBtn {
     border-radius: 10cap;
     border-color: transparent;
     background-color: rgb(182, 212, 212);
