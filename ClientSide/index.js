@@ -32,6 +32,8 @@ const apiCastOfMovie = "https://localhost:7208/api/Casts/GetCastOfMovie?id=";
 const apiUser = "https://localhost:7208/api/Users";
 const apiLogName = "https://localhost:7208/api/Users/LogInName";
 
+const admin=60;
+
 function init() {
     ajaxCall('Get', apiMovies, null, SuccessAllMovies, ErrorCallBack);
     ajaxCall('GET', apiCast, null, SuccessCBGetAllCast, ErrorCallBack);
@@ -449,7 +451,7 @@ $(document).ready(function () {
             Email: $("#emailReg").val(),
             Password: $("#passwordReg").val()
         };
-        ajaxCall('POST', apiUser, JSON.stringify(user), SuccessCBReg, ErrorCallBackUser);
+        ajaxCall('POST', apiUser, JSON.stringify(user), SuccessCBReg, ErrorCallBack);
     });
 
     $("#addCastToMovieForm").submit(function (event) {
