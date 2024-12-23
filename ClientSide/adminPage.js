@@ -35,7 +35,7 @@ renderUsers = () => {
             `<tr>
             <td>${user.userName}</td>
             <td>${user.email || "Unknown"}</td>
-            <td><button class="detail-btn detail-btn-info " 
+            <td><button class="userBtn" 
             onclick="showWishList(${user.id})">View</button></td>
           </tr>`
           );

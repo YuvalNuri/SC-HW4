@@ -1,0 +1,41 @@
+body{
+    text-align: center;
+}
+
+#homeBtn, .userBtn {
+    border-radius: 10cap;
+    border-color: transparent;
+    background-color: rgb(182, 212, 212);
+    width: 150px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+#header{
+    border-bottom: rgb(182, 212, 212) 5px;
+}
+
+.table-container {
+    margin: 25px;
+}
+
+#usersTable tbody tr:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    width: 400px !important;
+    text-align: center;
+}
+
+.modal-header {
+    margin: 0;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+}
