@@ -35,7 +35,7 @@ const apiCastOfMovie = "https://localhost:7208/api/Casts/GetCastOfMovie?id=";
 const apiUser = "https://localhost:7208/api/Users";
 const apiLogName = "https://localhost:7208/api/Users/LogInName";
 */
-const admin=60;
+const admin = 60;
 
 function init() {
     ajaxCall('Get', apiMovies, null, SuccessAllMovies, ErrorCallBack);
@@ -138,7 +138,7 @@ function RemoveFromWishList(movieId) {
         user: connectedUser,
         movie: movieId
     }
-    ajaxCall('DELETE',apiRemoveWish,JSON.stringify(id),SuccessCBRemoveWL,ErrorCallBack);
+    ajaxCall('DELETE', apiRemoveWish, JSON.stringify(id), SuccessCBRemoveWL, ErrorCallBack);
 }
 
 function SuccessCBAddWL(data) {
@@ -154,7 +154,7 @@ function SuccessCBRemoveWL(data) {
     ShowWishList();
 }
 
-function ErrorCallBack(err){
+function ErrorCallBack(err) {
     Swal.fire({
         title: 'Error!',
         text: err.responseText,
@@ -193,8 +193,9 @@ function ErrorCBWish(err) {
 function ShowAllMovies() {
     $(".card").show();
     if (connectedUser != 0) {
-        $(".wishD").show();    }
-    else{
+        $(".wishD").show();
+    }
+    else {
         $(".wishD").hide();
     }
     $("#filter").hide();
@@ -259,6 +260,7 @@ function SuccessCBCast(data) {
                         <button class="AddCaToMo" onclick="openAddCastModal('${data.id}')">Add Cast To Movie</button>
                     </div>     
                     </div>`;
+    $(".AddCaToMo").hide();
 }
 
 function ErrorCBCast(err) {
@@ -356,7 +358,7 @@ function updateAuthButton(userName) {
         $(".wishD").show();
         $(".deleteWishD").hide();
         $(".AddCaToMo").show();
-        if(connectedUser==admin){
+        if (connectedUser == admin) {
             $("#adminBtn").show();
         }
     } else {
@@ -460,16 +462,16 @@ $(document).ready(function () {
 
     $("#addCastToMovieForm").submit(function (event) {
         event.preventDefault();
-       let id = {
-        castId : document.getElementById('castSelect').getAttribute('data-cast-id'),
-        movieId : parseInt($("#castSelect").val())
-       };
-       ajaxCall('POST',apiCastToMovie,JSON.stringify(id),SuccessCBCastToMovie,ErrorCallBack);
+        let id = {
+            castId: document.getElementById('castSelect').getAttribute('data-cast-id'),
+            movieId: parseInt($("#castSelect").val())
+        };
+        ajaxCall('POST', apiCastToMovie, JSON.stringify(id), SuccessCBCastToMovie, ErrorCallBack);
     });
 
 });
 
-function SuccessCBCastToMovie(data){
+function SuccessCBCastToMovie(data) {
     Swal.fire({
         title: "Cast Added To Movie!",
         text: "The cast was successfully added to the movie!",
@@ -552,17 +554,17 @@ function GenerateOptions() {
 
 }
 
-function showCast(movieId){
-    const modal = document.getElementById("showMovieCast");
-    modal.style.display = "flex";
+function showCast(movieId) {
     console.log(movieId);
-    ajaxCall('GET',apiCastOfMovie+movieId,null,SuccessCBCastOfMovie,ErrorCallBack)
+    ajaxCall('GET', apiCastOfMovie + movieId, null, SuccessCBCastOfMovie, ErrorCallBack)
 }
 
-function SuccessCBCastOfMovie(data){
-    let castStr="";
-    for(let i=0; i<data.length;i++){
-        castStr+= `<div class="player-card castMcard">
+function SuccessCBCastOfMovie(data) {
+    const modal = document.getElementById("showMovieCast");
+    modal.style.display = "flex";
+    let castStr = "";
+    for (let i = 0; i < data.length; i++) {
+        castStr += `<div class="player-card castMcard">
                         <div>
                             <img src="${data[i].photoUrl}">
                         </div>  
@@ -572,7 +574,7 @@ function SuccessCBCastOfMovie(data){
                         </div>
                     </div>`;
     }
-    document.getElementById("modalBody3").innerHTML=castStr;
+    document.getElementById("modalBody3").innerHTML = castStr;
 }
 
 function closeMovieCastModal() {

@@ -23,7 +23,7 @@ namespace HW1.Controllers
         {
             List<int> wishList = Movie.ReadWishList(id);
             if (wishList.Count == 0)
-                return NotFound("error no movies found in your wishlist");
+                return NotFound("error no movies found in the wishlist");
             else
                 return Ok(wishList);
         }

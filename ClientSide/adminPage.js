@@ -92,7 +92,7 @@ function SuccessUsers(data) {
   }
 }
 
-function ErrorCB() {
+function ErrorCB(err) {
   Swal.fire({
     title: 'Error!',
     text: err.responseText,

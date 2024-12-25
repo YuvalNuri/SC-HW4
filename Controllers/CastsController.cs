@@ -46,7 +46,7 @@ namespace HW1.Controllers
         {
             List<object> castList = Cast.GetCastOfMovie(id);
             if (castList.Count == 0)
-                return NotFound("error no movies found in your wishlist");
+                return NotFound("error no casts found in this movie");
             else
                 return Ok(castList);
         }
