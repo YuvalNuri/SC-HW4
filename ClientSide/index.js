@@ -229,14 +229,11 @@ function ShowCastForm() {
     $("#filter").hide();
     $("#castRow").show();
     $("#movieRow").hide();
-    /*
     if (connectedUser != 0) {
         $(".AddCaToMo").show();
     }
     else
         $(".AddCaToMo").hide();
-
-*/
 }
 
 function SuccessCBCast(data) {
