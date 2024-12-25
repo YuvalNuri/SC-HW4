@@ -10,16 +10,19 @@ function ajaxCall(method, api, data, successCB, errorCB) {
         error: errorCB
     });
 }
-/*
+
 const apiMovies = "https://proj.ruppin.ac.il/bgroup2/test2/tar1/api/Movies";
 const apiRating = "https://proj.ruppin.ac.il/bgroup2/test2/tar1/api/Movies/rating/";
 const apiDuration = "https://proj.ruppin.ac.il/bgroup2/test2/tar1/api/Movies/GetByDuration?duration=";
 const apiAddWish = "https://proj.ruppin.ac.il/bgroup2/test2/tar1/api/Movies/AddToWishList";
 const apiGetWish = "https://proj.ruppin.ac.il/bgroup2/test2/tar1/api/Movies/GetWishList?id=";
+const apiRemoveWish = "https://proj.ruppin.ac.il/bgroup2/test2/tar1/api/Movies/RemoveFromWish"
 const apiCast = "https://proj.ruppin.ac.il/bgroup2/test2/tar1/api/Casts";
+const apiCastToMovie = "https://proj.ruppin.ac.il/bgroup2/test2/tar1/api/Casts/AddCastToMovie";
+const apiCastOfMovie = "https://proj.ruppin.ac.il/bgroup2/test2/tar1/api/Casts/GetCastOfMovie?id=";
 const apiUser = "https://proj.ruppin.ac.il/bgroup2/test2/tar1/api/Users";
 const apiLogName = "https://proj.ruppin.ac.il/bgroup2/test2/tar1/api/Users/LogInName";
-*/
+/*
 const apiMovies = "https://localhost:7208/api/Movies";
 const apiRating = "https://localhost:7208/api/Movies/rating/";
 const apiDuration = "https://localhost:7208/api/Movies/GetByDuration?duration=";
@@ -31,7 +34,7 @@ const apiCastToMovie = "https://localhost:7208/api/Casts/AddCastToMovie";
 const apiCastOfMovie = "https://localhost:7208/api/Casts/GetCastOfMovie?id=";
 const apiUser = "https://localhost:7208/api/Users";
 const apiLogName = "https://localhost:7208/api/Users/LogInName";
-
+*/
 const admin=60;
 
 function init() {

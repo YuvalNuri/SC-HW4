@@ -12,9 +12,15 @@ function ajaxCall(method, api, data, successCB, errorCB) {
   });
 }
 
+const apiUser = "https://proj.ruppin.ac.il/bgroup2/test2/tar1/api/Users";
+const apiGetWish = "https://proj.ruppin.ac.il/bgroup2/test2/tar1/api/Movies/GetWishList?id=";
+const apiMovies = "https://proj.ruppin.ac.il/bgroup2/test2/tar1/api/Movies"
+
+/*
 const apiUser = "https://localhost:7208/api/Users";
 const apiGetWish = "https://localhost:7208/api/Movies/GetWishList?id=";
 const apiMovies = "https://localhost:7208/api/Movies";
+*/
 
 $(document).ready(function () {
   ajaxCall('Get', apiMovies, null, SuccessAllMovies, ErrorCB);
